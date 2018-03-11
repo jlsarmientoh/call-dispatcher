@@ -1,7 +1,9 @@
-package com.almundo.callcenter.model;
+package com.almundo.callcenter.core;
 
 
 public interface Call {
+
+    int getId();
 
     void startCall();
 

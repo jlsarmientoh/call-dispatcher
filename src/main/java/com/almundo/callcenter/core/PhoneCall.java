@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
-public final class PhoneCall implements Call {
+public class PhoneCall implements Call {
 
     private static final Logger logger = LoggerFactory.getLogger(PhoneCall.class);
 

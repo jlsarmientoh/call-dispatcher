@@ -14,6 +14,7 @@ public class CallDispatcherTest {
 
     @Autowired
     private Dispatcher dispatcher;
+
     @Test
     public void dispatchCall() throws Exception {
 

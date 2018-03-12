@@ -1,20 +1,19 @@
 package com.almundo.callcenter.core;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class OperatorWorker implements Worker{
+public class SupervisorWorker implements Worker {
 
-    private static final Logger logger = LoggerFactory.getLogger(PhoneCall.class);
+    private static final Logger logger = LoggerFactory.getLogger(SupervisorWorker.class);
 
     private final int id;
 
-    public OperatorWorker(int id) {
+    public SupervisorWorker(int id) {
         this.id = id;
-    }
+    };
 
     @Override
     public int getId() {
@@ -26,7 +25,7 @@ public class OperatorWorker implements Worker{
         int callTime = ThreadLocalRandom.current() .nextInt(5000, 10000);
 
         call.startCall();
-        logger.info(String.format("Call %d answered by Operator %d", call.getId(), this.id));
+        logger.info(String.format("Call %d answered by Supervisor %d", call.getId(), this.id));
         try {
             Thread.sleep(callTime);
         } catch (InterruptedException e) {

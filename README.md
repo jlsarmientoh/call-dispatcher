@@ -1,3 +1,3 @@
 # Call Dispatcher
 
-For technical deatils, please go to: (Wiki)[./Wiki].
+For technical deatils, please go to: [Wiki](./wiki).

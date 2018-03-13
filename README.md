@@ -24,6 +24,10 @@ Once you clone this repository on your local machine, you can execute this proje
 
 _`mvn package && java -jar target/call-dispatcher-1.0-SNAPSHOT.jar`_
 
+Or
+
+_` mvn spring-boot:run`_
+
 _Note: Make sure you are placed at the root path of the project.  Where the pom.xml file is located at._
 
 ## Call Forwarding Rules

@@ -1,8 +1,9 @@
 package com.almundo.callcenter.dispatcher;
 
 import com.almundo.callcenter.core.*;
+import com.almundo.callcenter.exception.InvalidArgumentException;
 
-import java.security.InvalidParameterException;
+import java.util.Optional;
 
 
 public class CallTask implements Runnable {
@@ -21,23 +22,31 @@ public class CallTask implements Runnable {
 
     @Override
     public void run() {
-        Worker worker;
-        switch (this.workerType){
-            case OPERATOR:{
-                worker = new OperatorWorker((int)Thread.currentThread().getId());
-                break;
-            }
-            case SUPERVISOR:{
-                worker = new SupervisorWorker((int)Thread.currentThread().getId());
-                break;
-            }
-            case DIRECTOR:{
-                worker = new DirectorWorker((int)Thread.currentThread().getId());
-                break;
-            }
-            default: throw new InvalidParameterException();
-        }
 
-        worker.answerCall(call);
+        if(this.workerType == null)
+            throw new InvalidArgumentException("No valid Worker Type");
+
+        Optional<Call> optionalCall = Optional.ofNullable(this.call);
+        optionalCall.ifPresent(c -> {
+            Worker worker;
+            switch (this.workerType){
+                case OPERATOR:{
+                    worker = new OperatorWorker((int)Thread.currentThread().getId());
+                    break;
+                }
+                case SUPERVISOR:{
+                    worker = new SupervisorWorker((int)Thread.currentThread().getId());
+                    break;
+                }
+                case DIRECTOR:{
+                    worker = new DirectorWorker((int)Thread.currentThread().getId());
+                    break;
+                }
+                default: throw new InvalidArgumentException("No valid Worker Type");
+            }
+
+            worker.answerCall(c);
+        });
+
     }
 }

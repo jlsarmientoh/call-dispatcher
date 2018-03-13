@@ -24,7 +24,9 @@ public class AppConfiguration {
     public ExecutorService createOperatorExecutor(
             @Autowired
             @Qualifier("operatorCallRejectionHandler") RejectedExecutionHandler handler){
-        ExecutorService executorService = Executors.newFixedThreadPool(this.operatorPoolSize);
+        ExecutorService executorService = new ThreadPoolExecutor(this.operatorPoolSize, this.operatorPoolSize,
+                0L, TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<Runnable>(this.operatorPoolSize));
         ((ThreadPoolExecutor)executorService).setRejectedExecutionHandler(handler);
 
         return executorService;
@@ -34,15 +36,20 @@ public class AppConfiguration {
     public ExecutorService createSupervisorExecutor(
             @Autowired
             @Qualifier("supervisorCallRejectionHandler") RejectedExecutionHandler handler){
-        ExecutorService executorService = Executors.newFixedThreadPool(this.operatorPoolSize);
+        ExecutorService executorService = new ThreadPoolExecutor(this.supervisorPoolSize, this.supervisorPoolSize,
+                0L, TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<Runnable>(this.supervisorPoolSize));
         ((ThreadPoolExecutor)executorService).setRejectedExecutionHandler(handler);
 
         return executorService;
     }
 
     @Bean("directorExecutor")
-    public ExecutorService createDirectorExecutor(){
-        ExecutorService executorService = Executors.newFixedThreadPool(this.operatorPoolSize);
+    public ExecutorService createDirectorExecutor(@Autowired @Qualifier("directorCallRejectionHandler") RejectedExecutionHandler handler){
+        ExecutorService executorService = new ThreadPoolExecutor(this.directorPoolSize, this.directorPoolSize,
+                0L, TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<Runnable>(this.directorPoolSize));
+        ((ThreadPoolExecutor)executorService).setRejectedExecutionHandler(handler);
 
         return executorService;
 

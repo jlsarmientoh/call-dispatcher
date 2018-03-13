@@ -20,11 +20,11 @@ public class CallDispatcherTest {
     @Test
     public void dispatchMultipleCalls() throws Exception {
 
-        for(int i = 1; i <= 10; i++){
+        for(int i = 1; i <= 30; i++){
             dispatcher.dispatchCall(new PhoneCall(i));
         }
 
-        Thread.sleep(20000);
+        Thread.sleep(30000);
     }
 
     @Test

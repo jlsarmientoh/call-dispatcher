@@ -22,11 +22,11 @@ public class PhoneCall implements Call {
 
     @Override
     public void startCall() {
-        logger.info(String.format("Call %d started at %s",this.callId, new Date()));
+        logger.info("Call %d started at %s",this.callId, new Date());
     }
 
     @Override
     public void endCall() {
-        logger.info(String.format("Call %d ended at %s",this.callId, new Date()));
+        logger.info("Call %d ended at %s",this.callId, new Date());
     }
 }

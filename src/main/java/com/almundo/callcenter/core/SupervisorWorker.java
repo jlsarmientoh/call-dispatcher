@@ -14,7 +14,7 @@ public class SupervisorWorker implements Worker {
 
     public SupervisorWorker(int id) {
         this.id = id;
-    };
+    }
 
     @Override
     public int getId() {
@@ -23,16 +23,16 @@ public class SupervisorWorker implements Worker {
 
     @Override
     public void answerCall(Call call) {
-        Optional<Call> optionalCall = Optional.of(call);
+        Optional<Call> optionalCall = Optional.ofNullable(call);
 
         optionalCall.ifPresent( c -> {
-            int callTime = ThreadLocalRandom.current() .nextInt(5000, 10000);
+            int callTime = ThreadLocalRandom.current().nextInt(5000, 10000);
             c.startCall();
-            logger.info(String.format("Call %d answered by Supervisor %d", c.getId(), this.id));
+            logger.info("Call %d answered by Supervisor %d", c.getId(), this.id);
             try {
                 Thread.sleep(callTime);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
             c.endCall();
         });

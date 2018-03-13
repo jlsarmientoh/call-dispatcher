@@ -26,7 +26,7 @@ public class OperatorCallRejectionHandlerTest {
     OperatorCallRejectionHandler operatorCallRejectionHandler;
 
     @Test
-    public void rejectedExecutionNotCallTaskTipe() throws Exception {
+    public void rejectedExecutionNotCallTaskType() throws Exception {
 
         Runnable noCallTaskType = new Runnable() {
             @Override
@@ -38,7 +38,7 @@ public class OperatorCallRejectionHandlerTest {
     }
 
     @Test
-    public void rejectedExecutionCallTaskTipe() throws Exception {
+    public void rejectedExecutionCallTaskType() throws Exception {
 
         CallTask callTask = new CallTask(new PhoneCall(1), WorkerType.OPERATOR);
         this.operatorCallRejectionHandler.rejectedExecution(callTask, null);

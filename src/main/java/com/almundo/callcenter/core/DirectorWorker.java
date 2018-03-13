@@ -6,9 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Created by yorch on 11/03/18.
- */
+
 public class DirectorWorker implements Worker {
 
     private static final Logger logger = LoggerFactory.getLogger(DirectorWorker.class);
@@ -26,16 +24,16 @@ public class DirectorWorker implements Worker {
 
     @Override
     public void answerCall(Call call) {
-        Optional<Call> optionalCall = Optional.of(call);
+        Optional<Call> optionalCall = Optional.ofNullable(call);
 
         optionalCall.ifPresent( c -> {
-                    int callTime = ThreadLocalRandom.current() .nextInt(5000, 10000);
+                    int callTime = ThreadLocalRandom.current().nextInt(5000, 10000);
                     c.startCall();
-                    logger.info(String.format("Call %d answered by Director %d", c.getId(), this.id));
+                    logger.info("Call %d answered by Director %d", c.getId(), this.id);
                     try {
                         Thread.sleep(callTime);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        Thread.currentThread().interrupt();
                     }
                     c.endCall();
         });

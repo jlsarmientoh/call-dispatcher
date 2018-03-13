@@ -27,7 +27,7 @@ public class OperatorCallRejectionHandler implements RejectedExecutionHandler {
         if(r instanceof CallTask){
             CallTask rejectedCallTask = (CallTask) r;
             this.supervisorExecutor.execute(new CallTask(rejectedCallTask.getCall(), WorkerType.SUPERVISOR));
-            logger.info("Call %d forwarded to Supervisor", rejectedCallTask.getCall().getId());
+            logger.info("Call {} forwarded to Supervisor", rejectedCallTask.getCall().getId());
         }
     }
 }

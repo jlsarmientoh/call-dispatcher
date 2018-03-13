@@ -28,7 +28,7 @@ public class SupervisorWorker implements Worker {
         optionalCall.ifPresent( c -> {
             int callTime = ThreadLocalRandom.current().nextInt(5000, 10000);
             c.startCall();
-            logger.info("Call %d answered by Supervisor %d", c.getId(), this.id);
+            logger.info("Call {} answered by Supervisor {}", c.getId(), this.id);
             try {
                 Thread.sleep(callTime);
             } catch (InterruptedException e) {

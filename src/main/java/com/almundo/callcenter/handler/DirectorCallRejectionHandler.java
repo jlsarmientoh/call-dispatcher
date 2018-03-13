@@ -19,7 +19,7 @@ public class DirectorCallRejectionHandler implements RejectedExecutionHandler {
         if(r instanceof CallTask){
             //TODO retry call
             CallTask callTask = (CallTask) r;
-            logger.info("Call %d Rejected. All workers are bussy", callTask.getCall().getId());
+            logger.info("Call {} Rejected. All workers are bussy", callTask.getCall().getId());
         }
     }
 }

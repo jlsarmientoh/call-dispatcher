@@ -29,7 +29,7 @@ public class OperatorWorker implements Worker{
         optionalCall.ifPresent( c -> {
             int callTime = ThreadLocalRandom.current().nextInt(5000, 10000);
             c.startCall();
-            logger.info("Call %d answered by Operator %d", c.getId(), this.id);
+            logger.info("Call {} answered by Operator {}", c.getId(), this.id);
             try {
                 Thread.sleep(callTime);
             } catch (InterruptedException e) {

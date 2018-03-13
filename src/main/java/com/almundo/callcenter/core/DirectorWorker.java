@@ -29,7 +29,7 @@ public class DirectorWorker implements Worker {
         optionalCall.ifPresent( c -> {
                     int callTime = ThreadLocalRandom.current().nextInt(5000, 10000);
                     c.startCall();
-                    logger.info("Call %d answered by Director %d", c.getId(), this.id);
+                    logger.info("Call {} answered by Director {}", c.getId(), this.id);
                     try {
                         Thread.sleep(callTime);
                     } catch (InterruptedException e) {

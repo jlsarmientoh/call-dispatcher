@@ -6,6 +6,7 @@ For technical deatils, please go to: [Wiki](https://github.com/jlsarmientoh/call
 
 * Java 8
 * Maven 3.3.9 or higher
+* Git
 
 # Before Starting
 
@@ -16,6 +17,14 @@ Each call can be traced by logging entries in the console as follows:
 `INFO 15387 --- [pool-4-thread-1] c.a.c.c.PhoneCall  : Call 1 answered by Operator 17`
 
 `INFO 15387 --- [pool-4-thread-1] c.a.c.c.PhoneCall  : Call 1 ended at 2018-03-12T22:54:10.685-0500`
+
+## Package and Execute
+
+Once you clone this repository on your local machine, you can execute this project as a stand alone application as follows:
+
+_`mvn package && java -jar target/call-dispatcher-1.0-SNAPSHOT.jar`_
+
+_Note: Make sure you are placed at the root path of the project.  Where the pom.xml file is located at._
 
 ## Call Forwarding Rules
 
